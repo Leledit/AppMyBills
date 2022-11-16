@@ -1,5 +1,0 @@
-aqui vai ficar algumas notas referentes ao projetos(melhorias e tals);
-
-1) coloquei a parte de verificação de rota, dentro do arquivo route, mais infelismente esta acontecendo um delay, antes do redirecionameto, mais para fente quero tranferir essa funcionalidade para o arquivo principal da aplicação(app), para ver se nao ha o delay(precisa ser resolvido).
-
-

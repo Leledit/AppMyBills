@@ -2,11 +2,7 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import ButtonCustom from '../../componentes/button.js';
-import {useAuthValue} from '../../context/AuthContext';
-import {useNavigation} from '@react-navigation/native';
-import {collection, addDoc} from 'firebase/firestore';
-import '../../firebase/config';
-import {db} from '../../firebase/config';
+
 export default function CadastroReceita(){
   //criando states necessarios
   const [descricao, setDescicao] = useState('');
@@ -14,16 +10,22 @@ export default function CadastroReceita(){
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  //pegando contento do usuario
-  const {user} = useAuthValue();
-  const navigate = useNavigation;
-  async function cadastrarReceita() {
-    console.log("cadastrei");
-    const docRef = await addDoc(collection(db, "cities"), {
-      name: "Tokyo",
-      country: "Japan"
-    });
-    console.log(docRef);
+  function cadastrarReceita(){
+    //realizando validações
+    if ((descricao.trim().length < 3 )||(descricao.trim().length > 40)){
+      setError('Quantidade invalida de carracteres no campo nome');
+      return;
+    } else if (valor.trim().length === 0 ){
+      setError('Quantidade invalida de carracteres no campo valor');
+      return;
+    }
+
+    const infoReceita = {
+      descricao,
+      valor,
+      dataCadastro:new Date(),
+    };
+    console.log(infoReceita);
   }
   return (
     <View style={styles.cadastroReceita}>
