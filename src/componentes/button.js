@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -13,6 +13,7 @@ export default function ButtonCustom(props) {
       return props.btnonPress();
     }
   }
+
   return (
     <TouchableOpacity onPress={clickBtn} style={styles.btnArea}>
       <Text style={styles.btntext}>{props.textBotao}</Text>
