@@ -1,14 +1,9 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  ActivityIndicator,
-} from 'react-native';
-import ButtonCustom from '../../componentes/button.js';
+import {View, Text, TextInput, ActivityIndicator} from 'react-native';
+import ButtonCustom from '../../componentes/button/index';
 import {useAuthentication} from '../../hooks/useAuthentication';
-
+import {globalStyles} from '../../styles/globalStyles.js';
+import {formStyles} from '../../styles/formStyles.js';
 export default function Login() {
   //criando estados
   const [email, setEmail] = useState('');
@@ -44,78 +39,37 @@ export default function Login() {
     setErro(authError);
   }
   return (
-    <View style={styles.container}>
-      <View style={styles.containerLogin}>
-        <Text style={styles.titulo}>Login</Text>
-        <Text style={styles.descricao}>
+    <View style={globalStyles.container}>
+      <View style={globalStyles.containerLargeMargem}>
+        <Text style={formStyles.manTitleForm}>Login</Text>
+        <Text style={formStyles.textForm}>
           Para realizar o login, é necessario entrar com o seu E-mail e senha
         </Text>
-        <View style={styles.containerForm}>
-          <Text style={styles.formLambel}>E-mail cadastrado</Text>
-          <TextInput style={styles.formCamp} onChangeText={setEmail} />
+        <View style={formStyles.containerForm}>
+          <View style={formStyles.formCamp}>
+            <Text style={formStyles.formLambel}>E-mail cadastrado</Text>
+            <TextInput style={formStyles.formImput} onChangeText={setEmail} />
+          </View>
+          <View style={formStyles.formCamp}>
+            <Text style={formStyles.formLambel}>Senha</Text>
+            <TextInput style={formStyles.formImput} onChangeText={setSenha} />
+          </View>
+          <ButtonCustom
+            btnAcao={'event'}
+            btnUrl={null}
+            textBotao={'Login'}
+            btnonPress={realizarLogin}
+          />
         </View>
-        <View style={styles.containerForm}>
-          <Text style={styles.formLambel}>Senha</Text>
-          <TextInput style={styles.formCamp} onChangeText={setSenha} />
-        </View>
-        <ButtonCustom
-          btnAcao={'event'}
-          btnUrl={null}
-          textBotao={'Login'}
-          btnonPress={realizarLogin}
-        />
-      </View>
-      {loading && (
-        <ActivityIndicator
-          color={'red'}
-          size={45}
-          style={styles.animacaoIndicator}
-        />
-      )}
-      <View>
-        <Text style={styles.textErro}>{erro}</Text>
+        <Text style={formStyles.msgErro}>{erro}</Text>
+        {loading && (
+          <ActivityIndicator
+            color={'red'}
+            size={45}
+            style={formStyles.animationIndicator}
+          />
+        )}
       </View>
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  containerLogin: {
-    margin: 50,
-  },
-  titulo: {
-    textAlign: 'center',
-    fontSize: 27,
-    fontWeight: 'bold',
-    marginBottom: 25,
-  },
-  descricao: {
-    fontSize: 16,
-    color: 'rgba(0,0,0,0.4)',
-    marginBottom: 40,
-  },
-  containerForm: {
-    marginBottom: 20,
-  },
-  formLambel: {
-    marginBottom: 15,
-    fontSize: 17,
-  },
-  formCamp: {
-    borderWidth: 1,
-    borderColor: 'rgba(100, 255, 104,0.5 )',
-    height: 40,
-    padding: 10,
-    marginLeft: 10,
-  },
-  textErro: {
-    color: '#FFC311',
-    marginLeft: 50,
-    fontSize: 18,
-  },
-  animacaoIndicator: {
-    marginTop: 20,
-  },
-});

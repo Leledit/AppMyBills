@@ -11,6 +11,7 @@
 
 4. uma recomendação que eu vi na internet é quanto ao uso dos estilos em react-native, e que nao devemos deixar no arquivo do componente, os seus estilos. a comunidade diz que devemos criar uma pasta para o componente e dentro dessa deve ter um arquivo com os seus estilos. para os estilos globais, devemos criar uma pasta chamada styles dentro de src, criando dentro desta um arquivo para os nosso estilos globais.
 
+5. Adicionar mascaras nos campos dos formularios, mais especificamente, mascaras do tipo senha, nos campos que devem ser inserido uma senha. 
 
 
 

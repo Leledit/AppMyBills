@@ -14,11 +14,11 @@ import Credenciais from '../paginas/credenciais';
 import CadastreSe from '../paginas/cadastrese';
 import Login from '../paginas/login';
 import Perfil from '../paginas/perfil';
-import DetalhesReceita from '../paginas/receitas/detalhes';
-import CadastroReceita from '../paginas/receitas/cadastro';
-import ListaDeDespesas from '../paginas/despesas/listaDespesas';
-import CadastroDespesa from '../paginas/despesas/cadastro';
-import DetalhesDespesa from '../paginas/despesas/detalhes';
+import DetalhesReceita from '../paginas/receitas/detalhes/detalhes';
+import CadastroReceita from '../paginas/receitas/cadastro/cadastro';
+import ListaDeDespesas from '../paginas/despesas/listaDespesas/listaDespesas';
+import CadastroDespesa from '../paginas/despesas/cadastro/cadastro';
+import DetalhesDespesa from '../paginas/despesas/detalhes/detalhes';
 
 export default function Router() {
   //iniciando processo de autenticação

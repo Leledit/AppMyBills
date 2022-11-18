@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import {useRoute} from '@react-navigation/native';
-import ItemList from '../../componentes/itemList.js';
+import ItemList from '../../../componentes/itemList';
+import {styles} from './styles';
 export default function ListaDeDespesas() {
   const route = useRoute();
   const [informacoes] = useState([
@@ -66,24 +67,3 @@ export default function ListaDeDespesas() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  listaDespesas: {
-    width: '92%',
-    marginLeft: '4%',
-    flex: 1,
-    justifyContent: 'center',
-  },
-  header: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 20,
-    marginTop: 30,
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 18,
-    color: 'rgba(0,0,0,0.5)',
-  },
-});

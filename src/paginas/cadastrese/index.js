@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-import ButtonCustom from '../../componentes/button.js';
+import ButtonCustom from '../../componentes/button';
 import {useAuthentication} from '../../hooks/useAuthentication.js';
-
+import {globalStyles} from '../../styles/globalStyles.js';
+import {formStyles} from '../../styles/formStyles.js';
 export default function CadastreSe() {
   //criando estados
   const [nome, setNome] = useState('');
@@ -53,36 +53,39 @@ export default function CadastreSe() {
     await createUser(usuario);
   }
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.container}>
       <ScrollView>
-        <View style={styles.cadastreSe}>
-          <Text style={styles.titulo}>Cadastre-se</Text>
-          <Text style={styles.descricao}>
+        <View style={globalStyles.containerLargeMargem}>
+          <Text style={formStyles.manTitleForm}>Cadastre-se</Text>
+          <Text style={formStyles.textForm}>
             Para realizar o cadastro é necessario prencher os campos abaixo,
             sendotodos eles obrigatorios
           </Text>
-          <View>
-            <View style={styles.containerForm}>
-              <Text style={styles.formLabel}>Nome:</Text>
-              <TextInput style={styles.formInput} onChangeText={setNome} />
+          <View style={formStyles.containerForm}>
+            <View style={formStyles.formCamp}>
+              <Text style={formStyles.formLambel}>Nome:</Text>
+              <TextInput style={formStyles.formImput} onChangeText={setNome} />
             </View>
-            <View style={styles.containerForm}>
-              <Text style={styles.formLabel}>Email:</Text>
-              <TextInput style={styles.formInput} onChangeText={setEmail} />
+            <View style={formStyles.formCamp}>
+              <Text style={formStyles.formLambel}>Email:</Text>
+              <TextInput style={formStyles.formImput} onChangeText={setEmail} />
             </View>
-            <View style={styles.containerForm}>
-              <Text style={styles.formLabel}>Senha:</Text>
-              <TextInput style={styles.formInput} onChangeText={setSenha} />
+            <View style={formStyles.formCamp}>
+              <Text style={formStyles.formLambel}>Senha:</Text>
+              <TextInput style={formStyles.formImput} onChangeText={setSenha} />
             </View>
-            <View style={styles.containerForm}>
-              <Text style={styles.formLabel}>Confirmar senha:</Text>
-              <TextInput style={styles.formInput} onChangeText={setConfSenha} />
+            <View style={formStyles.formCamp}>
+              <Text style={formStyles.formLambel}>Confirmar senha:</Text>
+              <TextInput
+                style={formStyles.formImput}
+                onChangeText={setConfSenha}
+              />
             </View>
             {loading && (
               <ActivityIndicator
                 color={'red'}
                 size={45}
-                style={styles.animacaoIndicator}
+                style={formStyles.animationIndicator}
               />
             )}
             <ButtonCustom
@@ -92,52 +95,9 @@ export default function CadastreSe() {
               btnonPress={realizarCadastro}
             />
           </View>
-          <View>
-            <Text style={styles.textErro}>{erro}</Text>
-          </View>
+          <Text style={formStyles.msgErro}>{erro}</Text>
         </View>
       </ScrollView>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  cadastreSe: {
-    margin: 50,
-    marginTop: 20,
-  },
-  titulo: {
-    textAlign: 'center',
-    fontSize: 27,
-    fontWeight: 'bold',
-    marginBottom: 25,
-  },
-  descricao: {
-    fontSize: 16,
-    color: 'rgba(0,0,0,0.4)',
-    marginBottom: 20,
-  },
-  containerForm: {
-    marginBottom: 25,
-  },
-  formLabel: {
-    marginBottom: 15,
-    fontSize: 17,
-  },
-  formInput: {
-    borderWidth: 1,
-    borderColor: 'rgba(100, 255, 104,0.5 )',
-    height: 40,
-    padding: 10,
-    marginLeft: 10,
-  },
-  textErro: {
-    color: '#FFC311',
-    marginLeft: 0,
-    fontSize: 18,
-    marginTop: 20,
-  },
-});
