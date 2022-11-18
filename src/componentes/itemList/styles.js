@@ -3,12 +3,12 @@ export const styles = StyleSheet.create({
   itemList: {
     backgroundColor: '#FFF',
     borderRadius: 10,
-    padding: 15,
+    padding: 10,
     marginBottom: 20,
   },
   itemListInfos: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     marginBottom: -20,
     fontSize: 18,
     width: '100%',

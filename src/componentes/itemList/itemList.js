@@ -7,15 +7,18 @@ import {styles} from './styles';
 export default function ItemList(props) {
   const navigate = useNavigation();
   function passarDadosDetalhes() {
-    navigate.navigate(props.urlbtn, {...props});
+    let info = props.informacoes;
+    navigate.navigate(props.urlbtn, {
+      descricao: info.descricao,
+      valor: info.valor,
+      data: info.data,
+    });
   }
+  console.log(props.informacoes.dataCadastro);
+  //let data = props.informacoes.dataCadastro.toLocaleDateString('pt-BR');
   return (
     <View style={styles.itemList}>
-      <View
-        style={[
-          styles.itemListInfos,
-          {justifyContent: 'flex-start', marginLeft: 30},
-        ]}>
+      <View style={[styles.itemListInfos, {justifyContent: 'flex-start'}]}>
         <Text style={globalStyles.textCamp}>
           <Text style={globalStyles.textCampLabel}>Descrição: </Text>
           {props.informacoes.descricao}
@@ -30,7 +33,8 @@ export default function ItemList(props) {
         </View>
         <View>
           <Text style={globalStyles.textCamp}>
-            <Text style={globalStyles.textCampLabel}>Data: </Text>25/01/2022
+            <Text style={globalStyles.textCampLabel}>Data: </Text>
+            {}
           </Text>
         </View>
       </View>
@@ -39,13 +43,12 @@ export default function ItemList(props) {
           btnAcao={'event'}
           btnUrl={null}
           textBotao={'Detalhes'}
-          style={styles.btnDetalhes}
           btnonPress={() => {
             passarDadosDetalhes();
           }}
         />
       )}
-      <View style={styles.bordaEntreItens}></View>
+      <View style={styles.bordaEntreItens} />
     </View>
   );
 }

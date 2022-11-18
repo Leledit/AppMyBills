@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {useRoute} from '@react-navigation/native';
-import ItemList from '../../../componentes/itemList';
+import ItemList from '../../../componentes/itemList/itemList';
 import {styles} from './styles';
 export default function ListaDeDespesas() {
   const route = useRoute();

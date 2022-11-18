@@ -23,27 +23,12 @@ export const styles = StyleSheet.create({
     width: '80%',
     marginLeft: '10%',
     marginTop: 30,
+    height: '80%',
   },
   receitasItensNoReceitas: {
     color: '#FFC311',
     fontSize: 18,
     textAlign: 'center',
     display: 'none',
-  },
-  receitasIten: {
-    backgroundColor: '#FFF',
-    borderRadius: 10,
-    padding: 15,
-    marginBottom: 20,
-  },
-  receitasItenInfos: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 14,
-    fontSize: 18,
-  },
-  receitasItenInfoLabel: {
-    fontSize: 19,
-    color: '#FFC311',
   },
 });
