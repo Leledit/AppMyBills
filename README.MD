@@ -13,5 +13,6 @@
 
 5. Adicionar mascaras nos campos dos formularios, mais especificamente, mascaras do tipo senha, nos campos que devem ser inserido uma senha. 
 
+6. Apos realizar a ação de editar os dados da receita, nao esta sendo atualizada a lista, por algum motivo, so funciona se eu atualizar o app.
 
 

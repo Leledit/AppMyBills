@@ -1,16 +1,9 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from './styles';
-import {buscarReceitas} from '../../../hooks/buscarDados';
+import {buscarReceitas} from '../../../hooks/useManipularReceitas';
 import ItemList from '../../../componentes/itemList/itemList';
 export default function Receitas() {
   //configuraçoes de rota
@@ -19,6 +12,7 @@ export default function Receitas() {
     navigate.navigate('cadastroReceita');
   }
   const receitas = buscarReceitas();
+  console.log(receitas);
   return (
     <View>
       <View style={styles.receitaCabecalho}>

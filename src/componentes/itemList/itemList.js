@@ -6,16 +6,17 @@ import {globalStyles} from '../../styles/globalStyles.js';
 import {styles} from './styles';
 export default function ItemList(props) {
   const navigate = useNavigation();
+  let data = new Date(props.informacoes.dataCadastro);
   function passarDadosDetalhes() {
     let info = props.informacoes;
     navigate.navigate(props.urlbtn, {
       descricao: info.descricao,
       valor: info.valor,
-      data: info.data,
+      data: `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`,
+      id: info.id,
     });
   }
-  console.log(props.informacoes.dataCadastro);
-  //let data = props.informacoes.dataCadastro.toLocaleDateString('pt-BR');
+
   return (
     <View style={styles.itemList}>
       <View style={[styles.itemListInfos, {justifyContent: 'flex-start'}]}>
@@ -34,7 +35,7 @@ export default function ItemList(props) {
         <View>
           <Text style={globalStyles.textCamp}>
             <Text style={globalStyles.textCampLabel}>Data: </Text>
-            {}
+            {`${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`}
           </Text>
         </View>
       </View>

@@ -1,17 +1,19 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput, ActivityIndicator} from 'react-native';
 import ButtonCustom from '../../../componentes/button';
 import {formStyles} from '../../../styles/formStyles.js';
 import {globalStyles} from '../../../styles/globalStyles.js';
-
+import {adicionarReceita} from '../../../hooks/useManipularReceitas';
+import {retornarIdUltimaReceita} from '../../../hooks/useManipularReceitas';
+import { useNavigation } from '@react-navigation/native';
 export default function CadastroReceita(){
   //criando states necessarios
   const [descricao, setDescicao] = useState('');
   const [valor, setValor] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigation();
   function cadastrarReceita(){
     //realizando validações
     if ((descricao.trim().length < 3 )||(descricao.trim().length > 40)){
@@ -21,13 +23,17 @@ export default function CadastroReceita(){
       setError('Quantidade invalida de carracteres no campo valor');
       return;
     }
-
+    setLoading(true);
     const infoReceita = {
       descricao,
       valor,
-      dataCadastro:new Date(),
+      dataCadastro: new Date(),
+      id: retornarIdUltimaReceita(),
     };
-    console.log(infoReceita);
+   adicionarReceita(infoReceita);
+   setTimeout(() => {
+    navigate.navigate('Receitas');
+   },2000);
   }
   return (
     <View style={globalStyles.containerSmallMargin}>
@@ -57,6 +63,7 @@ export default function CadastroReceita(){
           textBotao={'Enviar'}
           btnonPress={cadastrarReceita}
         />
+        {loading && (<ActivityIndicator color="red" size={48} style={{marginTop: 20}} />) }
       </View>
       {error ? <Text style={formStyles.msgErro}>{error}</Text> :''}
     </View>

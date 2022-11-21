@@ -19,6 +19,7 @@ import CadastroReceita from '../paginas/receitas/cadastro/cadastro';
 import ListaDeDespesas from '../paginas/despesas/listaDespesas/listaDespesas';
 import CadastroDespesa from '../paginas/despesas/cadastro/cadastro';
 import DetalhesDespesa from '../paginas/despesas/detalhes/detalhes';
+import EditarReceita from '../paginas/receitas/editar';
 
 export default function Router() {
   //iniciando processo de autenticação
@@ -113,6 +114,13 @@ export default function Router() {
         <Stack.Screen
           name="detalhesDespesa"
           component={DetalhesDespesa}
+          options={{
+            headerTitle: '',
+          }}
+        />
+        <Stack.Screen
+          name="editarReceita"
+          component={EditarReceita}
           options={{
             headerTitle: '',
           }}
