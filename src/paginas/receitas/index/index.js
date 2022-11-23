@@ -12,7 +12,6 @@ export default function Receitas() {
     navigate.navigate('cadastroReceita');
   }
   const receitas = buscarReceitas();
-  console.log(receitas);
   return (
     <View>
       <View style={styles.receitaCabecalho}>
@@ -34,6 +33,7 @@ export default function Receitas() {
               informacoes={item}
               btnVisible={true}
               urlbtn={'detalhesReceita'}
+              tipoDados={'receitas'}
             />
           )}
         />

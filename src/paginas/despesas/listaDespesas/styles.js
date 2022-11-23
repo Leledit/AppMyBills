@@ -18,4 +18,13 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: 'rgba(0,0,0,0.5)',
   },
+  despesasList: {
+    height: '80%',
+  },
+  listNull: {
+    fontSize: 21,
+    textAlign: 'center',
+    marginTop: 50,
+    color: '#FFC311',
+  },
 });

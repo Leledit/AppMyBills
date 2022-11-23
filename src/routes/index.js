@@ -20,7 +20,7 @@ import ListaDeDespesas from '../paginas/despesas/listaDespesas/listaDespesas';
 import CadastroDespesa from '../paginas/despesas/cadastro/cadastro';
 import DetalhesDespesa from '../paginas/despesas/detalhes/detalhes';
 import EditarReceita from '../paginas/receitas/editar';
-
+import EditarDespesas from '../paginas/despesas/editar/';
 export default function Router() {
   //iniciando processo de autenticação
   const [user, setUser] = useState(undefined);
@@ -121,6 +121,13 @@ export default function Router() {
         <Stack.Screen
           name="editarReceita"
           component={EditarReceita}
+          options={{
+            headerTitle: '',
+          }}
+        />
+        <Stack.Screen
+          name="editarDespesa"
+          component={EditarDespesas}
           options={{
             headerTitle: '',
           }}

@@ -6,50 +6,96 @@ import {globalStyles} from '../../styles/globalStyles.js';
 import {styles} from './styles';
 export default function ItemList(props) {
   const navigate = useNavigation();
-  let data = new Date(props.informacoes.dataCadastro);
-  function passarDadosDetalhes() {
-    let info = props.informacoes;
-    navigate.navigate(props.urlbtn, {
-      descricao: info.descricao,
-      valor: info.valor,
-      data: `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`,
-      id: info.id,
-    });
-  }
-
-  return (
-    <View style={styles.itemList}>
-      <View style={[styles.itemListInfos, {justifyContent: 'flex-start'}]}>
-        <Text style={globalStyles.textCamp}>
-          <Text style={globalStyles.textCampLabel}>Descrição: </Text>
-          {props.informacoes.descricao}
-        </Text>
-      </View>
-      <View style={[styles.itemListInfos, {marginBottom: 20}]}>
-        <View>
+  let renderInfo;
+  if (props.tipoDados === 'receitas') {
+    let datatCadastro = new Date(props.informacoes.dataCadastro);
+    datatCadastro = `${datatCadastro.getDate()}/${
+      datatCadastro.getMonth() + 1
+    }/${datatCadastro.getFullYear()}`;
+    renderInfo = (
+      <>
+        <View style={[styles.itemListInfos, {marginTop: -12}]}>
+          <Text style={globalStyles.textCamp}>
+            <Text style={globalStyles.textCampLabel}>Descrição: </Text>
+            {props.informacoes.descricao}
+          </Text>
+        </View>
+        <View style={[styles.itemListInfos]}>
           <Text style={globalStyles.textCamp}>
             <Text style={globalStyles.textCampLabel}>Valor: </Text>
             {props.informacoes.valor}
           </Text>
         </View>
-        <View>
+        <View style={[styles.itemListInfos, {marginBottom: 0}]}>
           <Text style={globalStyles.textCamp}>
-            <Text style={globalStyles.textCampLabel}>Data: </Text>
-            {`${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`}
+            <Text style={globalStyles.textCampLabel}>Cadastrada em: </Text>
+            {datatCadastro}
           </Text>
         </View>
-      </View>
-      {props.btnVisible && (
-        <ButtonCustom
-          btnAcao={'event'}
-          btnUrl={null}
-          textBotao={'Detalhes'}
-          btnonPress={() => {
-            passarDadosDetalhes();
-          }}
-        />
-      )}
-      <View style={styles.bordaEntreItens} />
-    </View>
-  );
+        {props.btnVisible && (
+          <ButtonCustom
+            btnAcao={'event'}
+            btnUrl={null}
+            textBotao={'Detalhes'}
+            btnonPress={() => {
+              passarDadosDetalhes();
+            }}
+          />
+        )}
+      </>
+    );
+  } else {
+    let data = new Date(props.informacoes.vencimento);
+    let infoLabel = '';
+    let infoValue = '';
+    if (props.informacoes.tipo === 'Despesa fixa') {
+      infoLabel = 'Id:';
+      infoValue = props.informacoes.id;
+    } else {
+      infoLabel = 'Vencimento:';
+      infoValue = `${data.getDate()}/${
+        data.getMonth() + 1
+      }/${data.getFullYear()}`;
+    }
+    renderInfo = (
+      <>
+        <View style={[styles.itemListInfos, {justifyContent: 'flex-start'}]}>
+          <Text style={globalStyles.textCamp}>
+            <Text style={globalStyles.textCampLabel}>Nome: </Text>
+            {props.informacoes.nome}
+          </Text>
+        </View>
+        <View style={[styles.itemListInfos, {marginBottom: 20}]}>
+          <View>
+            <Text style={globalStyles.textCamp}>
+              <Text style={globalStyles.textCampLabel}>{infoLabel} </Text>
+              {infoValue}
+            </Text>
+          </View>
+          <View>
+            <Text style={globalStyles.textCamp}>
+              <Text style={globalStyles.textCampLabel}>Valor: </Text>
+              {props.informacoes.valor}
+            </Text>
+          </View>
+        </View>
+        {props.btnVisible && (
+          <ButtonCustom
+            btnAcao={'event'}
+            btnUrl={null}
+            textBotao={'Detalhes'}
+            btnonPress={() => {
+              passarDadosDetalhes();
+            }}
+          />
+        )}
+      </>
+    );
+  }
+  function passarDadosDetalhes() {
+    navigate.navigate(props.urlbtn, {
+      id: props.informacoes.id,
+    });
+  }
+  return <View style={styles.itemList}>{renderInfo}</View>;
 }

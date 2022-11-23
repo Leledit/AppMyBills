@@ -1,25 +1,36 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {View, Text,ActivityIndicator} from 'react-native';
 import ButtonCustom from '../../../componentes/button';
 import {styles} from './styles';
 import {globalStyles} from '../../../styles/globalStyles';
-import {excluirRegitroReceita} from '../../../hooks/useManipularReceitas';
+import {excluirRegitroReceita, buscarReceita} from '../../../hooks/useManipularReceitas';
 import { useNavigation, useRoute} from '@react-navigation/native';
 export default function DetalhesReceita(){
   const route = useRoute();
-  const dados = route.params;
+  const idReceita = route.params.id;
+  const [dadosReceita ,setDadosReceita] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigation();
+  useEffect(()=>{
+    const receita = buscarReceita(idReceita);
+    let dataReceita = new Date(receita[0].dataCadastro);
+    dataReceita = `${dataReceita.getDate()}/${dataReceita.getMonth() + 1}/${dataReceita.getFullYear()}`;
+    const dadosReceita = {
+      ...receita[0],
+      dataFormatada: dataReceita,
+    }
+    setDadosReceita(dadosReceita);
+  }, [idReceita]);
   function executarExclusaoRegistro(){
-    excluirRegitroReceita(dados.id);
+    excluirRegitroReceita(idReceita);
     setLoading(true);
     setTimeout(() => {
       navigate.navigate('Receitas');
      },2000);
   }
   function editarReceita(){
-    navigate.navigate('editarReceita',dados);
+    navigate.navigate('editarReceita',dadosReceita);
   }
   return (
     <View style={styles.detalhesReceitas}>
@@ -28,14 +39,16 @@ export default function DetalhesReceita(){
       </View>
       <View style={styles.detalhesReceita}>
         <Text style={globalStyles.textCamp}>
-          <Text style={globalStyles.textCampLabel}>Descrição: </Text>{' '}
-          {dados.descricao}
+          <Text style={globalStyles.textCampLabel}>Descrição: </Text>
+          {dadosReceita.descricao}
         </Text>
         <Text style={globalStyles.textCamp}>
-          <Text style={globalStyles.textCampLabel}>Valor: </Text>  {dados.valor}
+          <Text style={globalStyles.textCampLabel}>Valor: </Text>
+          {dadosReceita.valor}
         </Text>
         <Text style={globalStyles.textCamp}>
-          <Text style={globalStyles.textCampLabel}>Data: </Text>   {dados.data}
+          <Text style={globalStyles.textCampLabel}>Data: </Text>
+          {dadosReceita.dataFormatada}
         </Text>
       </View>
       <View style={styles.detalhesReceita}>

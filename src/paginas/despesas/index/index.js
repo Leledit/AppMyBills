@@ -1,47 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ButtonCustom from '../../../componentes/button';
-import ItemList from '../../../componentes/itemList/itemList';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from './styles';
 export default function Despesas() {
   const navigate = useNavigation();
+
   function cadastrarDespesas() {
     navigate.navigate('cadastrarDespesa');
   }
-
-  const [informacoes] = useState([
-    {
-      id: 1,
-      descricao: 'Celular',
-      valor: '25',
-      data: '2022/05/20',
-    },
-    {
-      id: 2,
-      descricao: 'Internet',
-      valor: '25',
-      data: '2022/05/20',
-    },
-    {
-      id: 3,
-      descricao: 'financiamento carro',
-      valor: '25',
-      data: '2022/05/20',
-    },
-  ]);
-
   function redirecionarPage(tipoDespesas) {
-    let messagem = '';
-    if (tipoDespesas === 'despesasFixas') {
-      messagem = 'Lista de despesas Fixas';
-    } else if (tipoDespesas === 'despesasParceladas') {
-      messagem = 'Lista de Parcelas para o mes';
-    } else {
-      messagem = 'Lista de Comprar para o mes';
-    }
-    navigate.navigate('listaDespesas', {msg: messagem});
+    navigate.navigate('listaDespesas', {
+      msg: tipoDespesas,
+    });
   }
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -54,16 +26,13 @@ export default function Despesas() {
       <View style={styles.containerDespesas}>
         <View>
           <Text style={styles.tituloDespesa}>Despesas fixas</Text>
-          <ItemList informacoes={informacoes[0]} btnVisible={false} />
-          <ItemList informacoes={informacoes[1]} btnVisible={false} />
-          <ItemList informacoes={informacoes[2]} btnVisible={false} />
         </View>
         <View style={styles.btnArea}>
           <View style={styles.btnAreaLista}>
             <ButtonCustom
               btnAcao={'event'}
               btnUrl={null}
-              textBotao={'Lista completa'}
+              textBotao={'Exibir'}
               btnonPress={() => {
                 redirecionarPage('despesasFixas');
               }}
@@ -74,16 +43,13 @@ export default function Despesas() {
       <View style={styles.containerDespesas}>
         <View>
           <Text style={styles.tituloDespesa}>Despesas Parceladas</Text>
-          <ItemList informacoes={informacoes[0]} btnVisible={false} />
-          <ItemList informacoes={informacoes[1]} btnVisible={false} />
-          <ItemList informacoes={informacoes[2]} btnVisible={false} />
         </View>
         <View style={styles.btnArea}>
           <View style={styles.btnAreaLista}>
             <ButtonCustom
               btnAcao={'event'}
               btnUrl={null}
-              textBotao={'Lista completa'}
+              textBotao={'Exibir'}
               btnonPress={() => {
                 redirecionarPage('despesasParceladas');
               }}
@@ -94,16 +60,13 @@ export default function Despesas() {
       <View style={styles.containerDespesas}>
         <View>
           <Text style={styles.tituloDespesa}>Despesas Do mes</Text>
-          <ItemList informacoes={informacoes[0]} btnVisible={false} />
-          <ItemList informacoes={informacoes[1]} btnVisible={false} />
-          <ItemList informacoes={informacoes[2]} btnVisible={false} />
         </View>
         <View style={styles.btnArea}>
           <View style={styles.btnAreaLista}>
             <ButtonCustom
               btnAcao={'event'}
               btnUrl={null}
-              textBotao={'Lista completa'}
+              textBotao={'Exibir'}
               btnonPress={() => {
                 redirecionarPage('despesasMes');
               }}

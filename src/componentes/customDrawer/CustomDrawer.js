@@ -7,7 +7,6 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-
 import {useAuthentication} from '../../hooks/useAuthentication';
 export default function CustomDrawer(props) {
   const {logout} = useAuthentication();
@@ -15,9 +14,10 @@ export default function CustomDrawer(props) {
   //configuraçoes de rota
   const navigate = useNavigation();
 
-  async function deslogar() {
-    await logout();
+  function deslogar() {
+    logout();
     navigate.goBack();
+    navigate.navigate('credenciais');
   }
   function acessarPerfil() {
     navigate.navigate('perfil');

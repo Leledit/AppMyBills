@@ -1,18 +1,81 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  ActivityIndicator,
+} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import ButtonCustom from '../../../componentes/button';
 import {formStyles} from '../../../styles/formStyles.js';
 import {globalStyles} from '../../../styles/globalStyles.js';
+import {
+  cadastrarDespesa,
+  retornarUltimoIdDespesa,
+} from '../../../hooks/useManipulandoDespesas';
+import {useNavigation} from '@react-navigation/native';
 export default function CadastroDespesa() {
   const [nome, setNome] = useState('');
   const [valor, setValor] = useState('');
   const [descricao, setDescricao] = useState('');
   const [numeroParcelas, setNumeroParcelas] = useState('');
   const [tipoDespesa, setTipoDespesa] = useState('');
+  const [erro, setErro] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigation();
 
   function cadastrarDespesas() {
-    alert('cadastrando Despesa');
+    //realizando validações no campo
+    if (nome.length < 3 || nome.length > 40) {
+      setErro('Quantidade invalida de caracteres para o campo nome!');
+      return;
+    } else if (valor.length === 0) {
+      setErro('O campo valor nao pode esta vazio');
+      return;
+    } else if (descricao.length < 3 || descricao.length > 40) {
+      setErro('O campo valor nao pode esta vazio');
+      return;
+    }
+    setLoading(true);
+    let dadosDespesa;
+
+    switch (tipoDespesa) {
+      case 'Despesa parcelada':
+        dadosDespesa = {
+          id: retornarUltimoIdDespesa(),
+          nome,
+          valor,
+          descricao,
+          numeroParcelas,
+          tipo: tipoDespesa,
+        };
+        break;
+      case 'Despesa do mes':
+        dadosDespesa = {
+          id: retornarUltimoIdDespesa(),
+          nome,
+          valor,
+          descricao,
+          vencimento: new Date(),
+          tipo: tipoDespesa,
+        };
+        break;
+      case 'Despesa fixa':
+        dadosDespesa = {
+          id: retornarUltimoIdDespesa(),
+          nome,
+          valor,
+          descricao,
+          tipo: tipoDespesa,
+        };
+        break;
+    }
+    cadastrarDespesa(dadosDespesa);
+    setTimeout(() => {
+      navigate.navigate('Despesas');
+    }, 2000);
+    setLoading(false);
   }
 
   return (
@@ -96,6 +159,10 @@ export default function CadastroDespesa() {
             textBotao={'Enviar'}
             btnonPress={cadastrarDespesas}
           />
+          {loading && (
+            <ActivityIndicator color="red" size={48} style={{marginTop: 20}} />
+          )}
+          {erro && <Text style={formStyles.msgErro}>{erro}</Text>}
         </View>
       </View>
     </ScrollView>

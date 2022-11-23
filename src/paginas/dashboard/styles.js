@@ -17,5 +17,11 @@ export const styles = StyleSheet.create({
   },
   dashboardInfos: {
     marginLeft: '7%',
+    marginBottom: 20,
+  },
+  dashboardInfosTitle: {
+    marginLeft: -10,
+    fontSize: 20,
+    color: 'rgba(0,0,0,0.5)',
   },
 });
