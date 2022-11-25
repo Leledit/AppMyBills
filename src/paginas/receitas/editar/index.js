@@ -6,6 +6,7 @@ import {globalStyles} from '../../../styles/globalStyles.js';
 import ButtonCustom from '../../../componentes/button';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {editarRegistroReceita} from '../../../hooks/useManipularReceitas';
+import {TextInputMask} from 'react-native-masked-text';
 export default function EditarReceita() {
   const route = useRoute();
   const dados = route.params;
@@ -15,6 +16,7 @@ export default function EditarReceita() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigation();
+
   function editarDados() {
     //realizando validações
     if (descricao.trim().length < 3 || descricao.trim().length > 40) {
@@ -33,7 +35,7 @@ export default function EditarReceita() {
     };
     editarRegistroReceita(infoReceita);
     setTimeout(() => {
-      navigate.navigate('Receitas');
+      navigate.navigate('Dashboard');
     }, 2000);
   }
   return (
@@ -52,10 +54,12 @@ export default function EditarReceita() {
         </View>
         <View style={formStyles.formCamp}>
           <Text style={formStyles.formLambel}>Valor:</Text>
-          <TextInput
-            style={formStyles.formImput}
-            onChangeText={setValor}
+          <TextInputMask
+            type={'money'}
             value={valor}
+            onChangeText={setValor}
+            style={formStyles.formImput}
+            keyboardType="numeric"
           />
         </View>
         <ButtonCustom

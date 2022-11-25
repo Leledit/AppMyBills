@@ -6,9 +6,11 @@ import {formStyles} from '../../../styles/formStyles.js';
 import {globalStyles} from '../../../styles/globalStyles.js';
 import {adicionarReceita} from '../../../hooks/useManipularReceitas';
 import {retornarIdUltimaReceita} from '../../../hooks/useManipularReceitas';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import {TextInputMask} from 'react-native-masked-text';
+import {convertendoValorParaCadastrar} from '../../../helper/helper';
 export default function CadastroReceita(){
-  //criando states necessarios
+  //criando states necessarios  
   const [descricao, setDescicao] = useState('');
   const [valor, setValor] = useState('');
   const [error, setError] = useState('');
@@ -24,17 +26,18 @@ export default function CadastroReceita(){
       return;
     }
     setLoading(true);
+    let valorConvertido = convertendoValorParaCadastrar(valor);
     const infoReceita = {
       descricao,
-      valor,
+      valor: valorConvertido.slice(2),
       dataCadastro: new Date(),
       id: retornarIdUltimaReceita(),
     };
    adicionarReceita(infoReceita);
-   setTimeout(() => {
-    navigate.navigate('Receitas');
+  setTimeout(() => {
+    navigate.navigate('Dashboard');
    },2000);
-  }
+  } 
   return (
     <View style={globalStyles.containerSmallMargin}>
       <View style={globalStyles.containerHerder}>
@@ -51,10 +54,12 @@ export default function CadastroReceita(){
         </View>
         <View style={formStyles.formCamp}>
           <Text style={formStyles.formLambel}>Valor:</Text>
-          <TextInput
-            style={formStyles.formImput}
-            onChangeText={setValor}
+          <TextInputMask
+            type={'money'}
             value={valor}
+            onChangeText={setValor}
+            style={formStyles.formImput}
+            keyboardType='numeric'
           />
         </View>
         <ButtonCustom 

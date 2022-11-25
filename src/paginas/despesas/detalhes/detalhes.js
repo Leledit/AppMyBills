@@ -4,7 +4,7 @@ import {useRoute, useNavigation} from '@react-navigation/native';
 import ButtonCustom from '../../../componentes/button';
 import {styles} from './styles';
 import {globalStyles} from '../../../styles/globalStyles';
-
+import {converterMoeda} from '../../../helper/helper';
 import {
   buscarDespesa,
   excluirDespesa,
@@ -56,7 +56,7 @@ export default function DetalhesDespesa() {
         </Text>
         <Text style={globalStyles.textCamp}>
           <Text style={globalStyles.textCampLabel}>Valor: </Text>
-          {dadosDespesa.valor}
+          {converterMoeda(dadosDespesa.valor)}
         </Text>
         {dadosDespesa.vencimento && (
           <Text style={globalStyles.textCamp}>

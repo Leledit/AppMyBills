@@ -15,6 +15,7 @@ import {
   buscarDespesa,
   editarDespesa,
 } from '../../../hooks/useManipulandoDespesas';
+import {TextInputMask} from 'react-native-masked-text';
 export default function EditarDespesas() {
   const route = useRoute();
   const idDespesa = route.params;
@@ -79,11 +80,13 @@ export default function EditarDespesas() {
             />
           </View>
           <View style={formStyles.formCamp}>
-            <Text style={formStyles.formLambel}>Valor</Text>
-            <TextInput
-              style={formStyles.formImput}
-              onChangeText={setValor}
+            <Text style={formStyles.formLambel}>Valor:</Text>
+            <TextInputMask
+              type={'money'}
               value={valor}
+              onChangeText={setValor}
+              style={formStyles.formImput}
+              keyboardType="numeric"
             />
           </View>
           <View style={formStyles.formCamp}>

@@ -6,6 +6,7 @@ import {styles} from './styles';
 import {globalStyles} from '../../../styles/globalStyles';
 import {excluirRegitroReceita, buscarReceita} from '../../../hooks/useManipularReceitas';
 import { useNavigation, useRoute} from '@react-navigation/native';
+import {converterMoeda} from '../../../helper/helper';
 export default function DetalhesReceita(){
   const route = useRoute();
   const idReceita = route.params.id;
@@ -44,7 +45,7 @@ export default function DetalhesReceita(){
         </Text>
         <Text style={globalStyles.textCamp}>
           <Text style={globalStyles.textCampLabel}>Valor: </Text>
-          {dadosReceita.valor}
+          {converterMoeda(dadosReceita.valor)}
         </Text>
         <Text style={globalStyles.textCamp}>
           <Text style={globalStyles.textCampLabel}>Data: </Text>

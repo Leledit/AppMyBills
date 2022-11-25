@@ -15,12 +15,14 @@ import {
   retornarUltimoIdDespesa,
 } from '../../../hooks/useManipulandoDespesas';
 import {useNavigation} from '@react-navigation/native';
+import {TextInputMask} from 'react-native-masked-text';
+import {convertendoValorParaCadastrar} from '../../../helper/helper';
 export default function CadastroDespesa() {
   const [nome, setNome] = useState('');
   const [valor, setValor] = useState('');
   const [descricao, setDescricao] = useState('');
   const [numeroParcelas, setNumeroParcelas] = useState('');
-  const [tipoDespesa, setTipoDespesa] = useState('');
+  const [tipoDespesa, setTipoDespesa] = useState('Despesa do mes');
   const [erro, setErro] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigation();
@@ -39,13 +41,14 @@ export default function CadastroDespesa() {
     }
     setLoading(true);
     let dadosDespesa;
-
+    let valorDespesa = convertendoValorParaCadastrar(valor);
+    console.log(valor);
     switch (tipoDespesa) {
       case 'Despesa parcelada':
         dadosDespesa = {
           id: retornarUltimoIdDespesa(),
           nome,
-          valor,
+          valor: valorDespesa.slice(2),
           descricao,
           numeroParcelas,
           tipo: tipoDespesa,
@@ -55,7 +58,7 @@ export default function CadastroDespesa() {
         dadosDespesa = {
           id: retornarUltimoIdDespesa(),
           nome,
-          valor,
+          valor: valorDespesa.slice(2),
           descricao,
           vencimento: new Date(),
           tipo: tipoDespesa,
@@ -65,7 +68,7 @@ export default function CadastroDespesa() {
         dadosDespesa = {
           id: retornarUltimoIdDespesa(),
           nome,
-          valor,
+          valor: valorDespesa.slice(2),
           descricao,
           tipo: tipoDespesa,
         };
@@ -75,7 +78,6 @@ export default function CadastroDespesa() {
     setTimeout(() => {
       navigate.navigate('Despesas');
     }, 2000);
-    setLoading(false);
   }
 
   return (
@@ -94,11 +96,13 @@ export default function CadastroDespesa() {
             />
           </View>
           <View style={formStyles.formCamp}>
-            <Text style={formStyles.formLambel}>Valor</Text>
-            <TextInput
-              style={formStyles.formImput}
-              onChangeText={setValor}
+            <Text style={formStyles.formLambel}>Valor:</Text>
+            <TextInputMask
+              type={'money'}
               value={valor}
+              onChangeText={setValor}
+              style={formStyles.formImput}
+              keyboardType="numeric"
             />
           </View>
           <View style={formStyles.formCamp}>

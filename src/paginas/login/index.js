@@ -1,14 +1,22 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  ActivityIndicator,
+  TouchableOpacity,
+} from 'react-native';
 import ButtonCustom from '../../componentes/button/index';
 import {useAuthentication} from '../../hooks/useAuthentication';
 import {globalStyles} from '../../styles/globalStyles.js';
 import {formStyles} from '../../styles/formStyles.js';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 export default function Login() {
   //criando estados
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
+  const [passwordVisble, setPasswordVisible] = useState(true);
 
   //exportando funçoes e valores vindo do kooks de gerenciamento de usuarios
   const {login, error: authError, loading} = useAuthentication();
@@ -38,6 +46,11 @@ export default function Login() {
     await login(usuario);
     setErro(authError);
   }
+
+  function changePasswordVisibility() {
+    setPasswordVisible(!passwordVisble);
+  }
+
   return (
     <View style={globalStyles.container}>
       <View style={globalStyles.containerLargeMargem}>
@@ -48,11 +61,41 @@ export default function Login() {
         <View style={formStyles.containerForm}>
           <View style={formStyles.formCamp}>
             <Text style={formStyles.formLambel}>E-mail cadastrado</Text>
-            <TextInput style={formStyles.formImput} onChangeText={setEmail} />
+            <TextInput
+              style={formStyles.formImput}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+            />
           </View>
           <View style={formStyles.formCamp}>
             <Text style={formStyles.formLambel}>Senha</Text>
-            <TextInput style={formStyles.formImput} onChangeText={setSenha} />
+            <View style={formStyles.contentFormIcon}>
+              <TextInput
+                placeholder="Insira sua senha"
+                placeholderTextColor={'rgba(0, 200, 104,1 )'}
+                style={[formStyles.formImput, {width: '90%'}]}
+                onChangeText={setSenha}
+                value={senha}
+                secureTextEntry={passwordVisble}
+              />
+              <TouchableOpacity onPress={changePasswordVisibility}>
+                {passwordVisble ? (
+                  <Ionicons
+                    name="eye"
+                    color="rgba(100, 255, 104,0.5 )"
+                    size={25}
+                    style={formStyles.iconPassword}
+                  />
+                ) : (
+                  <Ionicons
+                    name="eye-off"
+                    color="rgba(100, 255, 104,0.5 )"
+                    size={25}
+                    style={formStyles.iconPassword}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
           </View>
           <ButtonCustom
             btnAcao={'event'}

@@ -3,7 +3,7 @@ const dadosDespesas = {
     {
       id: '1',
       nome: 'Compras no mercado',
-      valor: '300',
+      valor: '300.00',
       descricao: 'Compras para a semana',
       tipo: 'Despesa do mes',
       vencimento: '2022-11-21T14:17:52.583Z',
@@ -11,7 +11,7 @@ const dadosDespesas = {
     {
       id: '2',
       nome: 'Compras no mercado',
-      valor: '400',
+      valor: '400.00',
       descricao: 'Compras para a semana',
       tipo: 'Despesa do mes',
       vencimento: '2022-11-21T14:17:52.583Z',
@@ -19,7 +19,7 @@ const dadosDespesas = {
     {
       id: '3',
       nome: 'Compras na feira',
-      valor: '150',
+      valor: '150.00',
       descricao: 'Compras para a semana',
       tipo: 'Despesa do mes',
       vencimento: '2022-11-21T14:17:52.583Z',
@@ -27,7 +27,7 @@ const dadosDespesas = {
     {
       id: '4',
       nome: 'Compras na feira',
-      valor: '200',
+      valor: '200.00',
       descricao: 'Compras para a semana',
       tipo: 'Despesa do mes',
       vencimento: '2022-11-21T14:17:52.583Z',
@@ -35,35 +35,35 @@ const dadosDespesas = {
     {
       id: '5',
       nome: 'Plano de celular',
-      valor: '50',
+      valor: '50.00',
       descricao: 'Oferecido pela operadora claro',
       tipo: 'Despesa fixa',
     },
     {
       id: '6',
       nome: 'Plano de Internet',
-      valor: '150',
+      valor: '150.00',
       descricao: 'Oferecido pela empresa Vivo',
       tipo: 'Despesa fixa',
     },
     {
       id: '7',
       nome: 'Plano de saude',
-      valor: '350',
+      valor: '350.00',
       descricao: 'Plano de saude provido pela empresa Unimed',
       tipo: 'Despesa fixa',
     },
     {
       id: '8',
       nome: 'Aluguel da casa',
-      valor: '600',
+      valor: '600.00',
       descricao: 'Aluguel da casa no bairo xxx',
       tipo: 'Despesa fixa',
     },
     {
       id: '9',
       nome: 'Roupas',
-      valor: '100',
+      valor: '100.00',
       descricao: 'Roupas para ir em um casamento',
       tipo: 'Despesa parcelada',
       qtdParcelas: '1/5',
@@ -72,7 +72,7 @@ const dadosDespesas = {
     {
       id: '10',
       nome: 'Roupas',
-      valor: '100',
+      valor: '100.00',
       descricao: 'Roupas para ir em um casamento',
       tipo: 'Despesa parcelada',
       qtdParcelas: '2/5',
@@ -81,7 +81,7 @@ const dadosDespesas = {
     {
       id: '11',
       nome: 'Roupas',
-      valor: '100',
+      valor: '100.00',
       descricao: 'Roupas para ir em um casamento',
       tipo: 'Despesa parcelada',
       qtdParcelas: '3/5',
@@ -90,7 +90,7 @@ const dadosDespesas = {
     {
       id: '12',
       nome: 'Roupas',
-      valor: '100',
+      valor: '100.00',
       descricao: 'Roupas para ir em um casamento',
       tipo: 'Despesa parcelada',
       qtdParcelas: '4/5',
@@ -99,7 +99,7 @@ const dadosDespesas = {
     {
       id: '13',
       nome: 'Roupas',
-      valor: '100',
+      valor: '100.00',
       descricao: 'Roupas para ir em um casamento',
       tipo: 'Despesa parcelada',
       qtdParcelas: '5/5',
@@ -108,7 +108,7 @@ const dadosDespesas = {
     {
       id: '14',
       nome: 'Sapatos',
-      valor: '40',
+      valor: '40.00',
       descricao: 'Sapatos para ir em um casamento',
       tipo: 'Despesa parcelada',
       qtdParcelas: '1/2',
@@ -117,7 +117,7 @@ const dadosDespesas = {
     {
       id: '15',
       nome: 'Sapatos',
-      valor: '40',
+      valor: '40.00',
       descricao: 'Sapatos para ir em um casamento',
       tipo: 'Despesa parcelada',
       qtdParcelas: '2/2',
@@ -126,7 +126,7 @@ const dadosDespesas = {
     {
       id: '16',
       nome: 'iphone 13 pro max',
-      valor: '300',
+      valor: '300.00',
       descricao: 'Novo modelo de celular',
       tipo: 'Despesa parcelada',
       qtdParcelas: '1/8',
@@ -135,7 +135,7 @@ const dadosDespesas = {
     {
       id: '17',
       nome: 'iphone 13 pro max',
-      valor: '300',
+      valor: '300.00',
       descricao: 'Novo modelo de celular',
       tipo: 'Despesa parcelada',
       qtdParcelas: '2/8',
@@ -144,7 +144,7 @@ const dadosDespesas = {
     {
       id: '18',
       nome: 'iphone 13 pro max',
-      valor: '300',
+      valor: '300.00',
       descricao: 'Novo modelo de celular',
       tipo: 'Despesa parcelada',
       qtdParcelas: '3/8',
@@ -153,7 +153,7 @@ const dadosDespesas = {
     {
       id: '19',
       nome: 'iphone 13 pro max',
-      valor: '300',
+      valor: '300.00',
       descricao: 'Novo modelo de celular',
       tipo: 'Despesa parcelada',
       qtdParcelas: '4/8',
@@ -162,7 +162,7 @@ const dadosDespesas = {
     {
       id: '20',
       nome: 'iphone 13 pro max',
-      valor: '300',
+      valor: '300.00',
       descricao: 'Novo modelo de celular',
       tipo: 'Despesa parcelada',
       qtdParcelas: '5/8',
@@ -171,7 +171,7 @@ const dadosDespesas = {
     {
       id: '21',
       nome: 'iphone 13 pro max',
-      valor: '300',
+      valor: '300.00',
       descricao: 'Novo modelo de celular',
       tipo: 'Despesa parcelada',
       qtdParcelas: '6/8',
@@ -180,7 +180,7 @@ const dadosDespesas = {
     {
       id: '22',
       nome: 'iphone 13 pro max',
-      valor: '300',
+      valor: '300.00',
       descricao: 'Novo modelo de celular',
       tipo: 'Despesa parcelada',
       qtdParcelas: '7/8',
@@ -189,7 +189,7 @@ const dadosDespesas = {
     {
       id: '23',
       nome: 'iphone 13 pro max',
-      valor: '300',
+      valor: '300.00',
       descricao: 'Novo modelo de celular',
       tipo: 'Despesa parcelada',
       qtdParcelas: '8/8',
@@ -198,7 +198,7 @@ const dadosDespesas = {
     {
       id: '24',
       nome: 'Presente de aniversario',
-      valor: '100',
+      valor: '100.00',
       descricao: 'Presente de aniversario para minha irma',
       tipo: 'Despesa parcelada',
       qtdParcelas: '1/3',
@@ -207,7 +207,7 @@ const dadosDespesas = {
     {
       id: '25',
       nome: 'Presente de aniversario',
-      valor: '100',
+      valor: '100.00',
       descricao: 'Presente de aniversario para minha irma',
       tipo: 'Despesa parcelada',
       qtdParcelas: '2/3',
@@ -216,7 +216,7 @@ const dadosDespesas = {
     {
       id: '26',
       nome: 'Presente de aniversario',
-      valor: '100',
+      valor: '100.00',
       descricao: 'Presente de aniversario para minha irma',
       tipo: 'Despesa parcelada',
       qtdParcelas: '3/3',

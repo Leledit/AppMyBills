@@ -38,6 +38,7 @@ export const formStyles = StyleSheet.create({
     height: 40,
     padding: 10,
     marginLeft: 10,
+    width: '100%',
   },
   msgErro: {
     color: '#FFC311',
@@ -51,5 +52,16 @@ export const formStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(100, 255, 104,0.5 )',
     borderRadius: 10,
+  },
+  contentFormIcon: {
+    flexDirection: 'row',
+    width: '100%',
+    borderColor: 'rgba(100, 255, 104,0.5 )',
+    borderRadius: 5,
+    height: 50,
+    alignItems: 'center',
+  },
+  iconPassword: {
+    paddingLeft: 10,
   },
 });

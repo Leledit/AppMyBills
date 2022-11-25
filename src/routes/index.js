@@ -29,12 +29,12 @@ export default function Router() {
   const loadingUser = user === undefined;
 
   //escutando mudanças no usuario autenticado
-  useEffect(() => {
+  /*useEffect(() => {
     onAuthStateChanged(auth, user => [setUser(user)]);
     if (user) {
       navigate.navigate('drawer');
     }
-  }, [auth, navigate, user]);
+  }, [auth, navigate, user]);*/
 
   //configuraçoes de rota
   const navigate = useNavigation();

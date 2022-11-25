@@ -5,11 +5,13 @@ import {
   TextInput,
   ActivityIndicator,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import ButtonCustom from '../../componentes/button';
 import {useAuthentication} from '../../hooks/useAuthentication.js';
 import {globalStyles} from '../../styles/globalStyles.js';
 import {formStyles} from '../../styles/formStyles.js';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 export default function CadastreSe() {
   //criando estados
   const [nome, setNome] = useState('');
@@ -17,7 +19,9 @@ export default function CadastreSe() {
   const [senha, setSenha] = useState('');
   const [confiSenha, setConfSenha] = useState('');
   const [erro, setErro] = useState('');
-
+  const [passwordVisble, setPasswordVisible] = useState(true);
+  const [passwordVisbleComfiSenha, setPasswordVisbleComfiSenha] =
+    useState(true);
   //exportando funçoes e valores vindo do kooks de gerenciamento de usuarios
   const {createUser, error: authError, loading} = useAuthentication();
 
@@ -68,18 +72,75 @@ export default function CadastreSe() {
             </View>
             <View style={formStyles.formCamp}>
               <Text style={formStyles.formLambel}>Email:</Text>
-              <TextInput style={formStyles.formImput} onChangeText={setEmail} />
+              <TextInput
+                style={formStyles.formImput}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+              />
             </View>
             <View style={formStyles.formCamp}>
-              <Text style={formStyles.formLambel}>Senha:</Text>
-              <TextInput style={formStyles.formImput} onChangeText={setSenha} />
+              <Text style={formStyles.formLambel}>Senha</Text>
+              <View style={formStyles.contentFormIcon}>
+                <TextInput
+                  placeholder="Insira sua senha"
+                  placeholderTextColor={'rgba(0, 200, 104,1 )'}
+                  style={[formStyles.formImput, {width: '90%'}]}
+                  onChangeText={setSenha}
+                  value={senha}
+                  secureTextEntry={passwordVisble}
+                />
+                <TouchableOpacity
+                  onPress={() => setPasswordVisible(!passwordVisble)}>
+                  {passwordVisble ? (
+                    <Ionicons
+                      name="eye"
+                      color="rgba(100, 255, 104,0.5 )"
+                      size={25}
+                      style={formStyles.iconPassword}
+                    />
+                  ) : (
+                    <Ionicons
+                      name="eye-off"
+                      color="rgba(100, 255, 104,0.5 )"
+                      size={25}
+                      style={formStyles.iconPassword}
+                    />
+                  )}
+                </TouchableOpacity>
+              </View>
             </View>
             <View style={formStyles.formCamp}>
               <Text style={formStyles.formLambel}>Confirmar senha:</Text>
-              <TextInput
-                style={formStyles.formImput}
-                onChangeText={setConfSenha}
-              />
+              <View style={formStyles.contentFormIcon}>
+                <TextInput
+                  placeholder="Confirme a sua senha"
+                  placeholderTextColor={'rgba(0, 200, 104,1 )'}
+                  style={[formStyles.formImput, {width: '90%'}]}
+                  onChangeText={setConfSenha}
+                  value={confiSenha}
+                  secureTextEntry={passwordVisbleComfiSenha}
+                />
+                <TouchableOpacity
+                  onPress={() => {
+                    setPasswordVisbleComfiSenha(!passwordVisbleComfiSenha);
+                  }}>
+                  {passwordVisbleComfiSenha ? (
+                    <Ionicons
+                      name="eye"
+                      color="rgba(100, 255, 104,0.5 )"
+                      size={25}
+                      style={formStyles.iconPassword}
+                    />
+                  ) : (
+                    <Ionicons
+                      name="eye-off"
+                      color="rgba(100, 255, 104,0.5 )"
+                      size={25}
+                      style={formStyles.iconPassword}
+                    />
+                  )}
+                </TouchableOpacity>
+              </View>
             </View>
             {loading && (
               <ActivityIndicator

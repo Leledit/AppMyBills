@@ -8,7 +8,7 @@ function calcularReceitas(receitas) {
   receitas.forEach(receita => {
     let dataReceita = new Date(receita.dataCadastro).getMonth();
     if (mesAtual === dataReceita) {
-      totalReceita += parseInt(receita.valor);
+      totalReceita = totalReceita + parseInt(receita.valor);
       qtdReceitas += 1;
     }
   });
@@ -29,20 +29,20 @@ function calcularDespesas(despesas) {
   let valorDespesasParcela = 0;
   despesas.fixa.forEach(despesa => {
     qtdDespesasFixa += 1;
-    valorDespesasFixas += parseInt(despesa.valor);
+    valorDespesasFixas = parseInt(despesa.valor) + valorDespesasFixas;
   });
   despesas.mes.forEach(despesa => {
     let vencimentoDespesa = new Date(despesa.vencimento).getMonth();
     if (mesAtual === vencimentoDespesa) {
       qtdDespesasMes += 1;
-      valorDespesasMes += parseInt(despesa.valor);
+      valorDespesasMes = parseInt(despesa.valor) + valorDespesasMes;
     }
   });
   despesas.parceladas.forEach(despesa => {
     let vencimentoDespesa = new Date(despesa.vencimento).getMonth();
     if (mesAtual === vencimentoDespesa) {
       qtdDespesasParcela += 1;
-      valorDespesasParcela += parseInt(despesa.valor);
+      valorDespesasParcela = parseInt(despesa.valor) + valorDespesasParcela;
     }
   });
   const dadosDespesas = {
@@ -53,6 +53,7 @@ function calcularDespesas(despesas) {
     valorDespesasMes,
     valorDespesasParcela,
   };
+  console.log(dadosDespesas);
   return dadosDespesas;
 }
 
